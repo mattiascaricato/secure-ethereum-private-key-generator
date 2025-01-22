@@ -17,7 +17,7 @@ pip3 install -r requirements.txt
 
 ## Usage
 ```sh
-python3 generate_eth_key.py
+python3 generate_eth_pk.py
 ```
 
 ## One-liner-command
