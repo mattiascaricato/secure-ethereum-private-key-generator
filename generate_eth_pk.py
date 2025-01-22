@@ -1,23 +1,18 @@
-import subprocess
 import base64
+import boto3
 from ecdsa.curves import SECP256k1
 
-# Get the order of secp256k1 directly from the library
+# Get the order of secp256k1
 # 0xFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFEBAAEDCE6AF48A03BBFD25E8CD0364141
 SECP256K1_ORDER = SECP256k1.order
 
-def generate_random_32_bytes():
-    """Generate 32 random bytes using AWS KMS."""
-    result = subprocess.run(
-        ["aws", "kms", "generate-random", "--number-of-bytes", "32", "--query", "Plaintext", "--output", "text"],
-        capture_output=True,
-        text=True
-    )
-    if result.returncode != 0:
-        raise Exception(f"Error generating random bytes: {result.stderr.strip()}")
+# Initialize AWS KMS client
+kms_client = boto3.client("kms")
 
-    # Decode base64 output and convert to hex
-    raw_bytes = base64.b64decode(result.stdout.strip())
+def generate_random_32_bytes():
+    """Generate 32 random bytes using AWS KMS with boto3."""
+    response = kms_client.generate_random(NumberOfBytes=32)
+    raw_bytes = response["Plaintext"]
     return raw_bytes.hex()
 
 def is_valid_private_key(hex_key):
@@ -34,3 +29,4 @@ def main():
 
 if __name__ == "__main__":
     main()
+
