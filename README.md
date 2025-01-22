@@ -7,7 +7,8 @@ Securely generate cryptographically strong Ethereum private keys using AWS KMS a
 - No dependencies beyond **AWS CLI** and **Python**.
 
 ## Requirements
-- AWS CLI (aws kms generate-random)
+- AWS CLI
+- AWS credentials configured
 - Python 3
 
 ## Dependencies
