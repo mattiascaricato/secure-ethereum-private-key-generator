@@ -1,4 +1,4 @@
-# secure-ethereum-private-key-generator
+# secure-ethereum-private-key-generator ![MIT License](https://img.shields.io/badge/license-MIT-blue.svg)
 Securely generate cryptographically strong Ethereum private keys using AWS KMS as a true source of randomness. Ensures secp256k1 elliptic curve compliance.
 
 - Uses **AWS KMS** for cryptographic-grade randomness instead of predictable entropy or local randomness flaws.
