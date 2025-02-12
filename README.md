@@ -1,4 +1,4 @@
-# secure-ethereum-private-key-generator
+# secure-ethereum-private-key-generator ![MIT License](https://img.shields.io/badge/license-MIT-blue.svg)
 Securely generate cryptographically strong Ethereum private keys using AWS KMS as a true source of randomness. Ensures secp256k1 elliptic curve compliance.
 
 - Uses **AWS KMS** for cryptographic-grade randomness instead of predictable entropy or local randomness flaws.
@@ -7,7 +7,8 @@ Securely generate cryptographically strong Ethereum private keys using AWS KMS a
 - No dependencies beyond **AWS CLI** and **Python**.
 
 ## Requirements
-- AWS CLI (aws kms generate-random)
+- AWS CLI
+- AWS credentials configured
 - Python 3
 
 ## Dependencies
@@ -17,7 +18,7 @@ pip3 install -r requirements.txt
 
 ## Usage
 ```sh
-python3 generate_eth_key.py
+python3 generate_eth_pk.py
 ```
 
 ## One-liner-command

@@ -20,7 +20,7 @@ def generate_random_32_bytes():
     return raw_bytes.hex()
 
 def is_valid_private_key(hex_key):
-    """Check if the private key is within the valid Ethereum range."""
+    """Checks if the private key is within the valid SECP256K1 range: 1 ≤ key < curve order (prevents invalid keys)."""
     key_int = int(hex_key, 16)
     return 1 <= key_int < SECP256K1_ORDER
 
