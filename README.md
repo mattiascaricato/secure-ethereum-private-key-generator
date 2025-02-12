@@ -22,7 +22,7 @@ python3 generate_eth_key.py
 
 ## One-liner-command
 ```sh
-while true; do key=$(aws kms generate-random --number-of-bytes 32 --query "Plaintext" --output text | base64 --decode | xxd -p -c 32); python3 -c "import sys; k=int(sys.argv[1], 16); exit(0 if 1 <= k < 0xFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFEBAAEDCE6AF48A03BBFD25E8CD0364141 else 1)" "$key" && echo "Private Key: 0x$key" && break; done
+while true; do key=$(aws kms generate-random --number-of-bytes 32 --query "Plaintext" --output text | base64 --decode | xxd -p -c 32); python3 -c "import sys; from eth_keys import keys; k=int(sys.argv[1], 16); exit(0 if 1 <= k < 0xFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFEBAAEDCE6AF48A03BBFD25E8CD0364141 else 1)" "$key" && echo "Private Key: $key" && echo "Wallet Address: $(python3 -c "from eth_keys import keys; pk = keys.PrivateKey(bytes.fromhex('$key')); print(pk.public_key.to_checksum_address())")" && break; done
 ```
 
 ## License
